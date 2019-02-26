@@ -70,26 +70,31 @@
 * multi-transformation query example:
     * 7 steps: read, groupby, sum, rename, sort, limit, collect
     * these three expression are equivalent
+
     ```scala
     // The following 3 are equivalent
     ds.sort("sortcol")
     ds.sort($"sortcol")
     ds.sort($"sortcol".asc)
     ```
-1. Dataframe 
-```scala
-import org.apache.spark.sql.functions.desc
 
-flightData2015 
-  .groupBy ( "DEST_COUNTRY_NAME" ) 
-  .sum ( "count" ) 
-  .withColumnRenamed ( "sum(count)" , "destination_total" ) 
-  .sort ( desc ( "destination_total" )) 
-  .limit ( 5 ) 
-```
-2. SQL
-```scala
- val maxSql = spark.sql ( """ 
- SELECT DEST_COUNTRY_NAME, sum(count) as destination_total 
- FROM flight_data_2015 GROUP BY DEST_COUNTRY_NAME ORDER BY sum(count) DESC LIMIT 5 """ ) 
-```
+    1. Dataframe 
+
+    ```scala
+    import org.apache.spark.sql.functions.desc
+
+    flightData2015 
+    .groupBy ( "DEST_COUNTRY_NAME" ) 
+    .sum ( "count" ) 
+    .withColumnRenamed ( "sum(count)" , "destination_total" ) 
+    .sort ( desc ( "destination_total" )) 
+    .limit ( 5 ) 
+    ```
+
+    2. SQL
+
+    ```scala
+    val maxSql = spark.sql ( """ 
+    SELECT DEST_COUNTRY_NAME, sum(count) as destination_total 
+    FROM flight_data_2015 GROUP BY DEST_COUNTRY_NAME ORDER BY sum(count) DESC LIMIT 5 """ ) 
+    ```
