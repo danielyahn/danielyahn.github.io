@@ -45,3 +45,14 @@
     * returns dataframe object and you can check whether it's streaming by running `streamingDataFrame.isStreaming` (a method of datasets)
 
     * SQL expression is identical as batch job
+*  There are various writeStream `format` as well as outputMode
+
+## Machine Learning
+* You can create a pipeline, fit (create vector indices), and then transform (to vector)
+* Caching vector in memory would make training faster. 
+* Class naming convention: 
+    1. Model definition (where you specify hyperparmeter, etc..) has class name of *\<algorithm>* 
+    2. Trained model has class name of *\<algorithm>Model* 
+
+## Lower level API (RDD)
+* RDD in python and scala is not equivalent
