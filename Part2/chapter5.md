@@ -86,7 +86,7 @@ df.selectExpr("avg(count)", "count(distinct(DEST_COUNTRY_NAME))").show(2)
 * pass explicit value to Spark. 
 
 ```scala
-df.select(expr("*"),lit(1).as("one)).show(2)
+df.select(expr("*"),lit(1).as("one")).show(2)
 //equivalent to
 // 1. in SQL
 // select *,1 as One from dfTable LIMIT2
@@ -153,6 +153,7 @@ df.randomSplit([0.25,0.75],seed)
 * DataFrames are immutable. so it creates a new DataFrame
 * Two DF's need to have same schema
 * But unions are based on column position, not schema. so make sure to have same column order
+* `df.union(otherDf)`
 
 ## Sorting
 * `sort` and `orderBy`
